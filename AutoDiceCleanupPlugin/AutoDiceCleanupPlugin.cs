@@ -4,9 +4,7 @@ using HarmonyLib;
 using ModdingTales;
 using UnityEngine;
 using System.Collections;
-using Bounce;
-using TMPro;
-using UnityEngine.Serialization;
+using BepInEx.Logging;
 
 namespace AutoDiceCleanup
 {
@@ -15,9 +13,10 @@ namespace AutoDiceCleanup
     {
         // constants
         public const string Guid = "org.hollofox.plugins.AutoDiceCleanup";
-        internal const string Version = "1.0.0.0";
+        internal const string Version = "1.0.1.0";
 
         public static AutoDiceCleanupPlugin Instance;
+        internal static ManualLogSource logger;
         private static ConfigEntry<bool> _cleanupAfterSelf { get; set; }
 
         internal static bool CleanUpAfterSelf
@@ -67,15 +66,16 @@ namespace AutoDiceCleanup
         void Awake()
         {
             Instance = this;
+            logger = Logger;
 
-            Debug.Log("Auto Dice Cleanup loaded");
+            Logger.LogDebug("Auto Dice Cleanup loaded");
             _cleanupAfterSelf = Config.Bind("Cleanup", "Self", true);
             _cleanupAsGm = Config.Bind("Cleanup", "All as GM", true);
 
             _cleanupAfterSelfInSeconds = Config.Bind("Cleanup", "Self Delay in Seconds", 5f);
             _cleanupAsGmInSeconds = Config.Bind("Cleanup", "GM Delay in Seconds", 5f);
 
-            ModdingUtils.Initialize(this, Logger, "HolloFoxes'");
+            ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
             var harmony = new Harmony(Guid);
             harmony.PatchAll();
         }

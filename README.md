@@ -1,6 +1,5 @@
 # Auto Dice Cleanup
 
-
 ## Install
 
 Currently you need to either follow the build guide down below or use the R2ModMan. 
@@ -9,6 +8,7 @@ Currently you need to either follow the build guide down below or use the R2ModM
 The plugin allows you to configure how long dice will persist on the board before automatically cleaning them up. This allows you to forget the dice and allow TaleSpire to clean them up after an extended period of time.
 
 ## Changelog
+- 1.0.1: Minor Patch, update logging
 - 1.0.0: Initial release
 
 ## Shoutouts
