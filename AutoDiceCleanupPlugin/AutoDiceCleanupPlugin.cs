@@ -56,8 +56,16 @@ namespace AutoDiceCleanup
 
         internal IEnumerator ClearDiceRollIEnum(float delayInSeconds, RollId rollId)
         {
-            yield return new WaitForSeconds(Mathf.Max(1,delayInSeconds)); // Minimum of 1s delay
-            PhotonSimpleSingletonBehaviour<DiceManager>.Instance.ClearDiceRoll(rollId);
+            yield return new WaitForSeconds(Mathf.Max(1, delayInSeconds)); // Minimum of 1s delay
+            try
+            {
+                logger.LogDebug($"Clearing dice roll {rollId}");
+                PhotonSimpleSingletonBehaviour<DiceManager>.Instance.ClearDiceRoll(rollId);
+            }
+            catch (System.Exception e) { 
+                // Exception may be thrown if the dice roll is already cleared
+                logger.LogDebug(e.Message); 
+            }
         }
 
         /// <summary>
@@ -75,9 +83,15 @@ namespace AutoDiceCleanup
             _cleanupAfterSelfInSeconds = Config.Bind("Cleanup", "Self Delay in Seconds", 5f);
             _cleanupAsGmInSeconds = Config.Bind("Cleanup", "GM Delay in Seconds", 5f);
 
-            ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
-            var harmony = new Harmony(Guid);
-            harmony.PatchAll();
+            try {
+                var harmony = new Harmony(Guid);
+                harmony.PatchAll();
+                ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
+            }
+            catch (System.Exception e)
+            {
+                logger.LogError(e.Message);
+            }
         }
     }
 }

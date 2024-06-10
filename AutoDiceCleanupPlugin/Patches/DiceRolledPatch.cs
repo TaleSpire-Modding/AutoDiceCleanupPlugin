@@ -1,7 +1,4 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AutoDiceCleanup.Patches
 {
@@ -32,6 +29,7 @@ namespace AutoDiceCleanup.Patches
         }
     }
 
+    /*
     [HarmonyPatch(typeof(DiceManager), "RPC_DiceResult")]
     public class InitiativeDiceRolledPatch
     {
@@ -121,6 +119,6 @@ namespace AutoDiceCleanup.Patches
             }
         }
     }
-
+    */
 
 }
