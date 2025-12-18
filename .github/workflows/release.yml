@@ -28,8 +28,8 @@ jobs:
           echo "VERSION_NUMBER=${version}" >> $env:GITHUB_OUTPUT
           echo "NAME=${name}" >> $env:GITHUB_OUTPUT
           echo "DESCRIPTION=${description}" >> $env:GITHUB_OUTPUT
-          echo "PROJECT=IncreaseDiceLimit.csproj" >> $env:GITHUB_OUTPUT
-          echo "PLUGIN=IncreaseDiceLimitPlugin.cs" >> $env:GITHUB_OUTPUT
+          echo "PROJECT=AutoDiceCleanupPlugin.csproj" >> $env:GITHUB_OUTPUT
+          echo "PLUGIN=AutoDiceCleanupPlugin.cs" >> $env:GITHUB_OUTPUT
           $dependencies = ""
           foreach ($dep in $json.dependencies){
             $first,$second,$rest = $dep -split '-',3
