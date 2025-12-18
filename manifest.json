@@ -1,11 +1,10 @@
 {
     "name": "Auto_Dice_Cleanup",
-    "version_number": "1.0.1",
+    "version_number": "1.1.0",
     "website_url": "https://github.com/TaleSpire-Modding/AutoDiceCleanupPlugin",
     "description": "Cleans up your dice after alloted time.",
     "dependencies": [
       "bbepisTaleSpire-BepInExPack-5.4.22",
-      "brcoding-SetInjectionFlagPlugin-2.5.1",
-      "HolloFox_TS-Logs_To_Sentry_Patch-1.0.1"
+      "brcoding-SetInjectionFlagPlugin-3.0.0"
     ]
 }

@@ -13,7 +13,7 @@ namespace AutoDiceCleanup
     {
         // constants
         public const string Guid = "org.hollofox.plugins.AutoDiceCleanup";
-        internal const string Version = "1.0.1.0";
+        internal const string Version = "0.0.0.0";
 
         public static AutoDiceCleanupPlugin Instance;
         internal static ManualLogSource logger;
@@ -60,7 +60,7 @@ namespace AutoDiceCleanup
             try
             {
                 logger.LogDebug($"Clearing dice roll {rollId}");
-                PhotonSimpleSingletonBehaviour<DiceManager>.Instance.ClearDiceRoll(rollId);
+                Dice.DiceRollManager.Instance.RemoveRoll(rollId);
             }
             catch (System.Exception e) { 
                 // Exception may be thrown if the dice roll is already cleared
@@ -86,6 +86,7 @@ namespace AutoDiceCleanup
             try {
                 var harmony = new Harmony(Guid);
                 harmony.PatchAll();
+
                 ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
             }
             catch (System.Exception e)
