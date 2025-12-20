@@ -2,18 +2,20 @@
 
 ## Install
 
-Currently you need to either follow the build guide down below or use the R2ModMan. 
+Currently, you need to either follow the build guide down below or use the R2ModMan. 
 
 ## Usage
-The plugin allows you to configure how long dice will persist on the board before automatically cleaning them up. This allows you to forget the dice and allow TaleSpire to clean them up after an extended period of time.
+The plugin allows you to configure how long dice will persist on the board before automatically cleaning them up. This allows you to forget the dice and allows TaleSpire to clean them up after an extended period of time.
 
 ## Changelog
-- 1.1.0: DiceManager patch fixed to support latest TaleSpire version
+- 1.1.0: DiceManager patch fixed to support the latest TaleSpire version
 - 1.0.1: Minor Patch, update logging
 - 1.0.0: Initial release
 
 ## Shoutouts
-Shoutout to my Patreons on https://www.patreon.com/HolloFox recognising your
-mighty contribution to my caffeine addiciton:
-- John Fuller
+<!-- CONTRIBUTORS-START -->
+Shoutout to my past [Patreons](https://www.patreon.com/HolloFox), recognising your mighty support and contribution to my caffeine addiction:
+- [Demongund](https://www.twitch.tv/demongund)
 - [Tales Tavern](https://talestavern.com/) - MadWizard
+- Joaqim Planstedt
+<!-- CONTRIBUTORS-END -->
