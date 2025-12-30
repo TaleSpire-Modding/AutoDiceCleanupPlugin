@@ -5,11 +5,12 @@ using ModdingTales;
 using UnityEngine;
 using System.Collections;
 using BepInEx.Logging;
+using PluginUtilities;
 
 namespace AutoDiceCleanup
 {
     [BepInPlugin(Guid, "Auto Dice Cleanup Plugin", Version)]
-    public class AutoDiceCleanupPlugin : BaseUnityPlugin
+    public class AutoDiceCleanupPlugin : DependencyUnityPlugin
     {
         // constants
         public const string Guid = "org.hollofox.plugins.AutoDiceCleanup";
@@ -68,10 +69,12 @@ namespace AutoDiceCleanup
             }
         }
 
+        Harmony harmony;
+
         /// <summary>
         /// Awake plugin
         /// </summary>
-        void Awake()
+        protected override void OnAwake()
         {
             Instance = this;
             logger = Logger;
@@ -84,15 +87,23 @@ namespace AutoDiceCleanup
             _cleanupAsGmInSeconds = Config.Bind("Cleanup", "GM Delay in Seconds", 5f);
 
             try {
-                var harmony = new Harmony(Guid);
+                harmony = new Harmony(Guid);
                 harmony.PatchAll();
-
-                ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
             }
             catch (System.Exception e)
             {
                 logger.LogError(e.Message);
             }
+        }
+
+        protected override void OnDestroyed()
+        {
+            harmony.UnpatchSelf();
+            Instance = null;
+            logger = null;
+            harmony = null;
+
+            Logger.LogDebug("Auto Dice Cleanup unloaded");
         }
     }
 }
