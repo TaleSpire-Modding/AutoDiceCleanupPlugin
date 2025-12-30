@@ -1,6 +1,6 @@
 {
     "name": "Auto_Dice_Cleanup",
-    "version_number": "1.1.1",
+    "version_number": "1.1.2",
     "website_url": "https://github.com/TaleSpire-Modding/AutoDiceCleanupPlugin",
     "description": "Cleans up player dice after allotted time.",
     "dependencies": [

@@ -1,7 +1,6 @@
 using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
-using ModdingTales;
 using UnityEngine;
 using System.Collections;
 using BepInEx.Logging;
@@ -10,6 +9,7 @@ using PluginUtilities;
 namespace AutoDiceCleanup
 {
     [BepInPlugin(Guid, "Auto Dice Cleanup Plugin", Version)]
+    [BepInDependency(SetInjectionFlag.Guid)]
     public class AutoDiceCleanupPlugin : DependencyUnityPlugin
     {
         // constants
