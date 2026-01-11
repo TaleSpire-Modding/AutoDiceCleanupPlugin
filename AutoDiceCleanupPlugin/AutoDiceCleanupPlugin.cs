@@ -10,7 +10,7 @@ namespace AutoDiceCleanup
 {
     [BepInPlugin(Guid, "Auto Dice Cleanup Plugin", Version)]
     [BepInDependency(SetInjectionFlag.Guid)]
-    public class AutoDiceCleanupPlugin : DependencyUnityPlugin
+    public class AutoDiceCleanupPlugin : DependencyUnityPlugin<AutoDiceCleanupPlugin>
     {
         // constants
         public const string Guid = "org.hollofox.plugins.AutoDiceCleanup";
@@ -72,6 +72,18 @@ namespace AutoDiceCleanup
         Harmony harmony;
 
         /// <summary>
+        /// Implement config bindings, No callback needed as read on every use
+        /// </summary>
+        protected override void OnSetupConfig(ConfigFile config)
+        {
+            _cleanupAfterSelf = config.Bind("Cleanup", "Self", true);
+            _cleanupAsGm = config.Bind("Cleanup", "All as GM", true);
+
+            _cleanupAfterSelfInSeconds = config.Bind("Cleanup", "Self Delay in Seconds", 5f);
+            _cleanupAsGmInSeconds = config.Bind("Cleanup", "GM Delay in Seconds", 5f);
+        }
+
+        /// <summary>
         /// Awake plugin
         /// </summary>
         protected override void OnAwake()
@@ -80,11 +92,6 @@ namespace AutoDiceCleanup
             logger = Logger;
 
             Logger.LogDebug("Auto Dice Cleanup loaded");
-            _cleanupAfterSelf = Config.Bind("Cleanup", "Self", true);
-            _cleanupAsGm = Config.Bind("Cleanup", "All as GM", true);
-
-            _cleanupAfterSelfInSeconds = Config.Bind("Cleanup", "Self Delay in Seconds", 5f);
-            _cleanupAsGmInSeconds = Config.Bind("Cleanup", "GM Delay in Seconds", 5f);
 
             try {
                 harmony = new Harmony(Guid);
@@ -98,7 +105,7 @@ namespace AutoDiceCleanup
 
         protected override void OnDestroyed()
         {
-            harmony.UnpatchSelf();
+            harmony?.UnpatchSelf();
             Instance = null;
             logger = null;
             harmony = null;

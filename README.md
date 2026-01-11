@@ -8,6 +8,7 @@ Currently, you need to either follow the build guide down below or use the R2Mod
 The plugin allows you to configure how long dice will persist on the board before automatically cleaning them up. This allows you to forget the dice and allows TaleSpire to clean them up after an extended period of time.
 
 ## Changelog
+- 1.1.3: migrate to DependencyUnityPlugins<T> to allow enable/disable the plugin without uninstalling it via chainloader
 - 1.1.2: fix hard dependency
 - 1.1.1: DependencyUnityPlugins is now used and implement logic for unpatching
 - 1.1.0: DiceManager patch fixed to support the latest TaleSpire version
